@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,5 +25,5 @@ public class RecruitmentBoard extends Board{
 
     @JsonIgnore
     @OneToMany(mappedBy = "board")
-    private List<RecruitmentMember> recruitmentMembers;
+    private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
 }

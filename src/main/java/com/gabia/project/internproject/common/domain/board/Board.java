@@ -15,7 +15,7 @@ public abstract class Board {
 
     @Id
     @GeneratedValue
-    @Column(name = "recruitment_board_id")
+    @Column(name = "board_id")
     private int id;
 
     private LocalDateTime date;

@@ -33,7 +33,7 @@ public class Review {
     private Member member;
 
     @OneToMany(mappedBy="review")
-    private List<ReviewImg> books = new ArrayList<ReviewImg>();
+    private List<ReviewImg> reviewImgs = new ArrayList<>();
 
 
 

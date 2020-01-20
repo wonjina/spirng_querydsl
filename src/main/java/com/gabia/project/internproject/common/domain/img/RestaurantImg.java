@@ -6,9 +6,9 @@ import lombok.Getter;
 import javax.persistence.*;
 
 @Entity
-@Getter
 @DiscriminatorValue("RestaurantImg")
 @Table(name = "restaurant_img")
+@Getter
 public class RestaurantImg extends Image{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_number")

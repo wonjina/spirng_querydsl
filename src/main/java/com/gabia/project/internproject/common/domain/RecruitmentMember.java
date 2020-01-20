@@ -20,6 +20,6 @@ public class RecruitmentMember {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recruitment_board_id")
+    @JoinColumn(name = "board_id")
     private Board board;
 }

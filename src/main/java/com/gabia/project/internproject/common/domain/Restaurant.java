@@ -2,7 +2,9 @@ package com.gabia.project.internproject.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabia.project.internproject.common.domain.board.Board;
+import com.gabia.project.internproject.common.domain.board.RecruitmentBoard;
 import com.gabia.project.internproject.common.domain.img.Image;
+import com.gabia.project.internproject.common.domain.img.RestaurantImg;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -33,7 +35,7 @@ public class Restaurant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
-    private List<Image> images = new ArrayList<>();
+    private List<RestaurantImg> images = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
@@ -41,5 +43,5 @@ public class Restaurant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
-    private List<Board> board = new ArrayList<>();
+    private List<RecruitmentBoard> board = new ArrayList<>();
 }
