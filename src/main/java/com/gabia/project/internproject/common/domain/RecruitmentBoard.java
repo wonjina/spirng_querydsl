@@ -1,4 +1,4 @@
-package com.gabia.project.internproject.common.domain.board;
+package com.gabia.project.internproject.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gabia.project.internproject.common.domain.RecruitmentMember;
@@ -8,15 +8,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "recruitment_board")
-@DiscriminatorValue("RecruitmentBoard")
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RecruitmentBoard extends Board{
+public class RecruitmentBoard{
+
+    @Id
+    @GeneratedValue
+    @Column(name = "recruitment_board_id")
+    private int id;
+
+    private LocalDateTime date;
+    private String subject;
+
     private int max_number;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +33,6 @@ public class RecruitmentBoard extends Board{
     private Restaurant restaurant;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "recruitmentBoard")
     private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
 }

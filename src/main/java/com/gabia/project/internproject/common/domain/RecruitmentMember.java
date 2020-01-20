@@ -1,6 +1,5 @@
 package com.gabia.project.internproject.common.domain;
 
-import com.gabia.project.internproject.common.domain.board.Board;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -20,6 +19,6 @@ public class RecruitmentMember {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
-    private Board board;
+    @JoinColumn(name = "recruitment_board_id")
+    private RecruitmentBoard recruitmentBoard;
 }

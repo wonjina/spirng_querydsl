@@ -1,7 +1,5 @@
 package com.gabia.project.internproject.common.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gabia.project.internproject.common.domain.img.ReviewImg;
 import lombok.Getter;
 
 import javax.persistence.*;
