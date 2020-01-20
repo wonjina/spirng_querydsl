@@ -28,18 +28,18 @@ public class Restaurant {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurant_number")
+    @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recruitment_img_id")
+    @OneToMany(mappedBy = "restaurant")
     private List<Image> images = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "menu_id")
+    @OneToMany(mappedBy = "restaurant")
     private List<Menu> menus = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recruitment_board_id")
+    @OneToMany(mappedBy = "restaurant")
     private List<Board> board = new ArrayList<>();
 }

@@ -17,6 +17,7 @@ public abstract class Board {
     @GeneratedValue
     @Column(name = "recruitment_board_id")
     private int id;
+
     private LocalDateTime date;
     private String subject;
 }

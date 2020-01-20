@@ -14,15 +14,15 @@ import java.util.List;
 @Getter
 @Table(name = "recruitment_board")
 @DiscriminatorValue("RecruitmentBoard")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecruitmentBoard extends Board{
     private int max_number;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "restaurant_number")
     private Restaurant restaurant;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recruitment_board_id")
+    @OneToMany(mappedBy = "board")
     private List<RecruitmentMember> recruitmentMembers;
 }

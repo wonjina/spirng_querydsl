@@ -22,10 +22,10 @@ public class Member {
     private String department;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recruitment_board_id")
+    @OneToMany(mappedBy = "member")
     private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "review_id")
+    @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 }
