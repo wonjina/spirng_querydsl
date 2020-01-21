@@ -1,7 +1,9 @@
 package com.gabia.project.internproject.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,11 +12,12 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Restaurant {
 
     @Id
-    @GeneratedValue
-    @Column(name = "restaurant_number")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "restaurant_id")
     private int id;
 
     private String cell_number;
@@ -24,6 +27,10 @@ public class Restaurant {
     private double location_x;
     private double location_y;
     private String name;
+
+    public Restaurant( String load_address , String name){
+        this.load_address =load_address; this.name = name;
+    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")

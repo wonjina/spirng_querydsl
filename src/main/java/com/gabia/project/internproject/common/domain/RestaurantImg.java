@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 public class RestaurantImg {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "restaurant_img_id")
     private int id;
 
@@ -18,6 +18,11 @@ public class RestaurantImg {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_number")
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
+    public void setRestaurant(Restaurant restaurant){
+        this.restaurant = restaurant;
+        restaurant.getRestaurantImgs().add(this);
+    }
 }

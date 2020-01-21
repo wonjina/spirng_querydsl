@@ -19,7 +19,7 @@ import java.util.List;
 public class RecruitmentBoard{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recruitment_board_id")
     private int id;
 
@@ -29,10 +29,15 @@ public class RecruitmentBoard{
     private int max_number;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_number")
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @JsonIgnore
     @OneToMany(mappedBy = "recruitmentBoard")
     private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
+
+    public void setRestaurant(Restaurant restaurant){
+        this.restaurant = restaurant;
+        restaurant.getRecruitmentBoards().add(this);
+    }
 }

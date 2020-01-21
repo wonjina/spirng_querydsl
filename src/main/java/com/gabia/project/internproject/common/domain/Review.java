@@ -14,7 +14,7 @@ import java.util.List;
 public class Review {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private int id;
 
@@ -23,7 +23,7 @@ public class Review {
     private int star;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_number")
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,6 +33,13 @@ public class Review {
     @OneToMany(mappedBy="review")
     private List<ReviewImg> reviewImgs = new ArrayList<>();
 
-
+    public void setRestaurant(Restaurant restaurant){
+        this.restaurant = restaurant;
+        restaurant.getReviews().add(this);
+    }
+    public void setMember(Member member){
+        this.member = member;
+        member.getReviews().add(this);
+    }
 
 }
