@@ -28,6 +28,9 @@ public class Restaurant {
     private double location_y;
     private String name;
 
+    public Restaurant( int id){
+        this.id = id;
+    }
     public Restaurant( String load_address , String name){
         this.load_address =load_address; this.name = name;
     }

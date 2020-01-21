@@ -12,5 +12,5 @@ public interface RestaurantRepository  extends JpaRepository<Restaurant, Integer
     @Query("select distinct r.category from Restaurant r")
     List<String> getCategories();   //식당 테이블에서 카테고리만 가져오는 쿼리(중복제거)
 
-    //List<Restaurant> findRestaurantByRestaurantNumber(int id);
+    List<Restaurant> findRestaurantByid(int id);
 }
