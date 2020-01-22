@@ -1,10 +1,11 @@
 package com.gabia.project.internproject.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import javax.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Review {
     @Column(name = "review_id")
     private int id;
 
-    private LocalDateTime date;
+    private LocalDate date;
     private String comment;
     private int star;
 

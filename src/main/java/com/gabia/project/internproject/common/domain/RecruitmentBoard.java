@@ -1,14 +1,10 @@
 package com.gabia.project.internproject.common.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gabia.project.internproject.common.domain.RecruitmentMember;
-import com.gabia.project.internproject.common.domain.Restaurant;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +19,7 @@ public class RecruitmentBoard{
     @Column(name = "recruitment_board_id")
     private int id;
 
-    private LocalDateTime date;
+    private LocalDate date;
     private String subject;
 
     private int max_number;
