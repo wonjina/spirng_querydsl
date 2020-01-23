@@ -10,13 +10,13 @@ import java.util.List;
 
 @Entity
 @Getter
-@Table(name = "recruitment_board")
+@Table(name = "recruit_board")
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RecruitBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "recruitment_board_id")
+    @Column(name = "recruit_board_id")
     private int id;
 
     private LocalDate date;
@@ -29,11 +29,11 @@ public class RecruitBoard {
     private Restaurant restaurant;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "recruitmentBoard")
-    private List<RecruitMember> recruitmentMembers = new ArrayList<>();
+    @OneToMany(mappedBy = "recruitBoard")
+    private List<RecruitMember> recruitMembers = new ArrayList<>();
 
     public void setRestaurant(Restaurant restaurant){
         this.restaurant = restaurant;
-        restaurant.getRecruitmentBoards().add(this);
+        restaurant.getRecruitBoards().add(this);
     }
 }

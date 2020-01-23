@@ -49,5 +49,5 @@ public class Restaurant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
-    private List<RecruitBoard> recruitmentBoards = new ArrayList<>();
+    private List<RecruitBoard> recruitBoards = new ArrayList<>();
 }

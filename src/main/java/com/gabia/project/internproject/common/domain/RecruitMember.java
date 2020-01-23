@@ -7,11 +7,11 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Table(name = "recruitment_member")
+@Table(name = "recruit_member")
 public class RecruitMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "recruitment_member_id")
+    @Column(name = "recruit_member_id")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -19,15 +19,15 @@ public class RecruitMember {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recruitment_board_id")
-    private RecruitBoard recruitmentBoard;
+    @JoinColumn(name = "recruit_board_id")
+    private RecruitBoard recruitBoard;
 
     public void setMember(Member member) {
         this.member=member;
-        member.getRecruitmentMembers().add(this);
+        member.getRecruitMembers().add(this);
     }
-    public void setRecruitmentBoard(RecruitBoard recruitmentBoard){
-        this.recruitmentBoard = recruitmentBoard;
-        recruitmentBoard.getRecruitmentMembers().add(this);
+    public void setRecruitBoard(RecruitBoard recruitBoard){
+        this.recruitBoard = recruitBoard;
+        recruitBoard.getRecruitMembers().add(this);
     }
 }
