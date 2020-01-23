@@ -9,12 +9,12 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class RestaurantCategoriesDto {
+public class CategoriesDto {
 
     private String notice;
     private List<String> categories = new ArrayList<>();
 
-    public RestaurantCategoriesDto(List<String> categories){
+    public CategoriesDto(List<String> categories){
         this.categories = categories;
     }
     public void addCategory(String category){

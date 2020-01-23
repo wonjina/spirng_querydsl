@@ -70,6 +70,8 @@ class RestaurantRepositoryTest {
         reslist.add(1);
         reslist.add(3);
 
+        Restaurant res = restaurantRepository.findRestaurantByid(1);
+
         List<Restaurant> result = restaurantRepository.findRestaurantsByidIn(reslist);
         for (Restaurant restaurant : result) {
             System.out.println(restaurant.getId()+","+restaurant.getName());

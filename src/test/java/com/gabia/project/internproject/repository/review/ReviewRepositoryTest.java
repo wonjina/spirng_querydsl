@@ -19,7 +19,7 @@ class ReviewRepositoryTest {
 
     @Test
     public void 특정가게리뷰리스트가져오기(){
-        List<Review> reviews = reviewRepository.getReviewsAtRestaurant(new Restaurant(2));
+        List<Review> reviews = reviewRepository.getReviewsAtRestaurant(1);
         for (Review review : reviews) {
             System.out.println(review.getComment()+","+review.getId()+","+review.getMember().getName());
         }
@@ -75,7 +75,7 @@ class ReviewRepositoryTest {
                     ","+reviewGroupingDto.getAvg()+","+reviewGroupingDto.getCount());
         }
         List<ReviewGroupDto> test4 = reviewRepository.getGroupReview();
-        List<ReviewGroupDto> test5 = reviewRepository.getGroupStar();
+        List<ReviewGroupDto> test5 = reviewRepository.getGroupStar(1);
 
     }
 

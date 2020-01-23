@@ -11,20 +11,20 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @Query("select rev from Review rev join fetch rev.member m where rev.restaurant= :restaruant")
-    List<Review> getReviewsAtRestaurant(@Param("restaruant") Restaurant restaruant);
+    @Query("select rev from Review rev join fetch rev.member m where rev.restaurant.id= :restaruant")
+    List<Review> getReviewsAtRestaurant(@Param("restaruant") int id /*Restaurant restaruant*/);
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r), avg(r.star))" +
             " from Review r group by r.restaurant.id")
     List<ReviewGroupDto> getGroupReviewNStar();
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r))" +
-            " from Review r group by r.restaurant.id order by 2 desc ")
-    List<ReviewGroupDto> getGroupReview();
+            " from Review r group by r.restaurant.id order by 1 ")
+    List<ReviewGroupDto> getGroupReview(@Param("limit") int limit);
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, avg(r.star))" +
-            " from Review r group by r.restaurant.id order by 2 desc ")
-    List<ReviewGroupDto> getGroupStar();
+            " from Review r group by r.restaurant.id order by 1 ")
+    List<ReviewGroupDto> getGroupStar(@Param("limit") int limit);
 
    /*
     @Query("select new com.gabia.project.internproject.repository.restauant.dto.ReviewGroupingDto( r, count, avg)" +
