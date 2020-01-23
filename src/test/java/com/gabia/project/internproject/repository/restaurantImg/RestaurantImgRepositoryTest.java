@@ -2,14 +2,13 @@ package com.gabia.project.internproject.repository.restaurantImg;
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import com.gabia.project.internproject.common.domain.RestaurantImg;
+import com.gabia.project.internproject.repository.restauant.RestaurantImgRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

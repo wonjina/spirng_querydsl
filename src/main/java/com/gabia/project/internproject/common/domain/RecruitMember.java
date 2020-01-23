@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Table(name = "recruitment_member")
-public class RecruitmentMember {
+public class RecruitMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recruitment_member_id")
@@ -20,13 +20,13 @@ public class RecruitmentMember {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recruitment_board_id")
-    private RecruitmentBoard recruitmentBoard;
+    private RecruitBoard recruitmentBoard;
 
     public void setMember(Member member) {
         this.member=member;
         member.getRecruitmentMembers().add(this);
     }
-    public void setRecruitmentBoard(RecruitmentBoard recruitmentBoard){
+    public void setRecruitmentBoard(RecruitBoard recruitmentBoard){
         this.recruitmentBoard = recruitmentBoard;
         recruitmentBoard.getRecruitmentMembers().add(this);
     }

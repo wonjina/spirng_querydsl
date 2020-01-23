@@ -22,7 +22,7 @@ public class Member {
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
+    private List<RecruitMember> recruitmentMembers = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")

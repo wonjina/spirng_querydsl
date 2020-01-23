@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-    @Query("select rev from Review rev where rev.restaurant= :restaruant")
-    List<Review> getReviewListAtRestaurant(@Param("restaruant") Restaurant restaruant);
+    @Query("select rev from Review rev join fetch rev.member m where rev.restaurant= :restaruant")
+    List<Review> getReviewsAtRestaurant(@Param("restaruant") Restaurant restaruant);
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r), avg(r.star))" +
             " from Review r group by r.restaurant.id")

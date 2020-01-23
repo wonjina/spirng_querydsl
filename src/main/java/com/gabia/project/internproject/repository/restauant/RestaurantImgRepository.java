@@ -1,4 +1,4 @@
-package com.gabia.project.internproject.repository.restaurantImg;
+package com.gabia.project.internproject.repository.restauant;
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import com.gabia.project.internproject.common.domain.RestaurantImg;

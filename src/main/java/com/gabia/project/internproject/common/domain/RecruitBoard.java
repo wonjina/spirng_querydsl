@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Table(name = "recruitment_board")
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RecruitmentBoard{
+public class RecruitBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class RecruitmentBoard{
 
     @JsonIgnore
     @OneToMany(mappedBy = "recruitmentBoard")
-    private List<RecruitmentMember> recruitmentMembers = new ArrayList<>();
+    private List<RecruitMember> recruitmentMembers = new ArrayList<>();
 
     public void setRestaurant(Restaurant restaurant){
         this.restaurant = restaurant;

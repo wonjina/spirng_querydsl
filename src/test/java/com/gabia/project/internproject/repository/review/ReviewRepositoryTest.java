@@ -19,9 +19,9 @@ class ReviewRepositoryTest {
 
     @Test
     public void 특정가게리뷰리스트가져오기(){
-        List<Review> reviews = reviewRepository.getReviewListAtRestaurant(new Restaurant(2));
+        List<Review> reviews = reviewRepository.getReviewsAtRestaurant(new Restaurant(2));
         for (Review review : reviews) {
-            System.out.println(review.getComment()+","+review.getId());
+            System.out.println(review.getComment()+","+review.getId()+","+review.getMember().getName());
         }
     }
 
