@@ -1,6 +1,8 @@
 package com.gabia.project.internproject.repository.restauant;
 
+import com.gabia.project.internproject.common.domain.RecruitBoard;
 import com.gabia.project.internproject.common.domain.Restaurant;
+import com.gabia.project.internproject.common.domain.Review;
 import com.gabia.project.internproject.repository.restauant.dto.RestaurantJoinReviewDto;
 import com.gabia.project.internproject.repository.review.dto.ReviewGroupDto;
 import org.assertj.core.api.Assertions;
@@ -27,7 +29,7 @@ class RestaurantRepositoryTest {
         LocalDate testDate = LocalDate.of(2020,1,12);
         */
 
-        List<RestaurantJoinReviewDto> test1 = restaurantRepository.getGroupReviewNStar();
+        List<RestaurantJoinReviewDto> test1 = restaurantRepository.getTopReviewNStar(1);
         for (RestaurantJoinReviewDto reviewGroupingDto : test1) {
             System.out.println(reviewGroupingDto.getId()+","+reviewGroupingDto.getName()+","+reviewGroupingDto.getCategory()+
                     ","+reviewGroupingDto.getStar()+","+reviewGroupingDto.getCount());
@@ -35,10 +37,18 @@ class RestaurantRepositoryTest {
 
         List<RestaurantJoinReviewDto> test2 = restaurantRepository.getTopReview();
         List<RestaurantJoinReviewDto> test3 = restaurantRepository.getTopStar();
-
-
-
     }
+
+    @Test
+    void 원대다테스트(){  //원대다 조회시 레이지가 적용되는지 확인해보는용도
+        List<Restaurant> list = restaurantRepository.findAll();
+        System.out.println("겟 리스트!");
+        list.get(0).getRecruitBoards();
+        /*for (Restaurant restaurant : list) {
+            System.out.println(restaurant.getReviews()+","+restaurant.getRecruitBoards()+","+restaurant.getCategory());
+        }*/
+    }
+
 
     @Test
     void findCategoriesDistincBy함수테스트() {
@@ -91,6 +101,8 @@ class RestaurantRepositoryTest {
         Assertions.assertThat(findMember.getLoad_address()).isEqualTo(restaurant.getLoad_address()) ;
         Assertions.assertThat(findMember).isEqualTo(restaurant);
     }
+
+
     @Test
     public void basicCRUD() {
         Restaurant member1 = new Restaurant("member1","menu1");

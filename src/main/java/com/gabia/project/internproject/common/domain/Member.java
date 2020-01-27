@@ -20,11 +20,9 @@ public class Member {
     private String name;
     private String department;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<RecruitMember> recruitMembers = new ArrayList<>();
 
-    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 }

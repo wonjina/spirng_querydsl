@@ -1,11 +1,12 @@
-package com.gabia.project.internproject.service.restaruant;
+package com.gabia.project.internproject.service.restaurant;
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import com.gabia.project.internproject.repository.restauant.RestaurantRepository;
 import com.gabia.project.internproject.repository.restauant.RestaurantImgRepository;
+import com.gabia.project.internproject.repository.restauant.dto.RestaurantJoinReviewDto;
 import com.gabia.project.internproject.repository.review.ReviewRepository;
 import com.gabia.project.internproject.repository.review.dto.ReviewGroupDto;
-import com.gabia.project.internproject.service.restaruant.dto.*;
+import com.gabia.project.internproject.service.restaurant.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,10 +48,10 @@ public class RestaurantService {
     }
 
     //아래 2개의 함수 - AOP 적용예정
-    public RestaurantTopStarDtoV1 getTopStarList(int limit){
+    public RestaurantTopStarDtoV1 getTopStarListV1(int limit){
         List<Integer> restaurantIdList = new ArrayList<>();
 
-        List<ReviewGroupDto> reviewList =  reviewRepository.getGroupStar(limit);
+        List<ReviewGroupDto> reviewList =  reviewRepository.getGroupStarV1(limit);
         //reviewList.stream().map(r->restaurantIdList.add(r.getRestaurant_id()));//식당 기본키만 빼내는 작업
         for (ReviewGroupDto reviewGroupDto : reviewList) {
             restaurantIdList.add(reviewGroupDto.getRestaurant_id());
@@ -58,11 +59,11 @@ public class RestaurantService {
         List<Restaurant> restaurants = restaurantRepository.findRestaurantsByidIn(restaurantIdList);
 
 
-        List<TopStarColumnDto> topStarColumnDto =
+        List<TopStarColumnDtoV1> topStarColumnDto =
                 restaurants.stream()
-                        .map(r->new TopStarColumnDto(r)).collect(Collectors.toList());
+                        .map(r->new TopStarColumnDtoV1(r)).collect(Collectors.toList());
         int i=0;
-        for (TopStarColumnDto starColumnDto : topStarColumnDto) {
+        for (TopStarColumnDtoV1 starColumnDto : topStarColumnDto) {
             starColumnDto.setStar(reviewList.get(i++).getAvg());
         }
 
@@ -72,10 +73,10 @@ public class RestaurantService {
         return new RestaurantTopStarDtoV1(topStarColumnDto);
     }
 
-    public RestaurantTopReviewDtoV1 getTopAmoutReviewList(int limit){
+    public RestaurantTopReviewDtoV1 getTopAmoutReviewListV1(int limit){
         List<Integer> restaurantIdList = new ArrayList<>();
 
-        List<ReviewGroupDto> reviewList =  reviewRepository.getGroupReview(limit);
+        List<ReviewGroupDto> reviewList =  reviewRepository.getGroupReviewV1(limit);
         //reviewList.stream().map(r->restaurantIdList.add(r.getRestaurant_id()));//식당 기본키만 빼내는 작업
         for (ReviewGroupDto reviewGroupDto : reviewList) {
             restaurantIdList.add(reviewGroupDto.getRestaurant_id());
@@ -83,17 +84,45 @@ public class RestaurantService {
         List<Restaurant> restaurants = restaurantRepository.findRestaurantsByidIn(restaurantIdList);
 
 
-        List<TopReviewColumnDto> topStarColumnDto =
+        List<TopReviewColumnDtoV1> topReviewColumnDto =
                 restaurants.stream()
-                        .map(r->new TopReviewColumnDto(r)).collect(Collectors.toList());
+                        .map(r->new TopReviewColumnDtoV1(r)).collect(Collectors.toList());
         int i=0;
-        for (TopReviewColumnDto reviewColumnDto : topStarColumnDto) {
+        for (TopReviewColumnDtoV1 reviewColumnDto : topReviewColumnDto) {
             reviewColumnDto.setReviewAmount(reviewList.get(i++).getCount());
         }
 
-        //별점순으로 sorting 추가예정
+        //리뷰갯수순으로 sorting 추가예정
 
 
-        return new RestaurantTopReviewDtoV1(topStarColumnDto);
+        return new RestaurantTopReviewDtoV1(topReviewColumnDto);
     }
+
+
+    public RestaurantTopListsDtoV1 getTopAmoutReviewNStarListV1(int limit){
+
+        List<RestaurantJoinReviewDto> reviewNstar = restaurantRepository.getTopReviewNStar(limit);
+        //sorting 2번 해서 아래 list들에 주입
+
+        List<RestaurantTopReviewDtoV1> topReviewList = null;
+        List<RestaurantTopStarDtoV1> topStarList=null;
+        
+
+        /*
+        private List<RestaurantTopReviewDtoV1> restaurantTopReviewList = new ArrayList<>();
+        private List<RestaurantTopStarDtoV1> restaurantTopStarList = new ArrayList<>();
+        */
+
+        return new RestaurantTopListsDtoV1(topReviewList, topStarList);
+    }
+
+
+    public RestaurantTopStarDtoV2 getTopStarListV2(int limit){
+        return new RestaurantTopStarDtoV2(reviewRepository.getGroupStarV2(limit));
+    }
+
+    public RestaurantTopReviewDtoV2 getTopAmoutReviewListV2(int limit){
+        return new RestaurantTopReviewDtoV2(reviewRepository.getGroupReviewV2(limit));
+    }
+
 }

@@ -1,7 +1,7 @@
 package com.gabia.project.internproject.controller.restaurant;
 
-import com.gabia.project.internproject.service.restaruant.RestaurantService;
-import com.gabia.project.internproject.service.restaruant.dto.*;
+import com.gabia.project.internproject.service.restaurant.RestaurantService;
+import com.gabia.project.internproject.service.restaurant.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,14 +31,24 @@ public class RestaurantController {
         return restaurantDetailDto;
     }
 
+    @GetMapping("/restaurant/v2/filter/topstarlist")
+    public RestaurantTopStarDtoV2 getSortingStarListV2(){  return restaurantService.getTopStarListV2(LIMIT);  }
+
+    @GetMapping("/restaurant/v2/filter/topreviewlist")
+    public RestaurantTopReviewDtoV2 getSortingReviewListV2(){ return restaurantService.getTopAmoutReviewListV2(LIMIT); }
+
     @GetMapping("/restaurant/v1/filter/topstarlist")
     public RestaurantTopStarDtoV1 getSortingStarListV1(){
-        return restaurantService.getTopStarList(LIMIT);
+        return restaurantService.getTopStarListV1(LIMIT);
     }
 
     @GetMapping("/restaurant/v1/filter/topreviewlist")
-    public RestaurantTopReviewDtoV1 getSortingReviewListV1(){
-        RestaurantTopReviewDtoV1 restaurantTopReviewDtoV1 = restaurantService.getTopAmoutReviewList(LIMIT);
-        return restaurantTopReviewDtoV1;
-    }
+    public RestaurantTopReviewDtoV1 getSortingReviewListV1(){ return restaurantService.getTopAmoutReviewListV1(LIMIT); }
+/*
+
+    //top 리뷰갯수, 별점 가게 정보 리스트들
+    @GetMapping("/restaurant/v1/filter/toplists")
+    public RestaurantTopListsDtoV1 getSortingListsV1(){ return null; }
+*/
+
 }

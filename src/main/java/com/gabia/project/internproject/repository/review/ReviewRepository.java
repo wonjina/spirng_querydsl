@@ -20,11 +20,33 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r))" +
             " from Review r group by r.restaurant.id order by 1 ")
-    List<ReviewGroupDto> getGroupReview(@Param("limit") int limit);
+    List<ReviewGroupDto> getGroupReviewV1(@Param("limit") int limit);
 
     @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, avg(r.star))" +
             " from Review r group by r.restaurant.id order by 1 ")
-    List<ReviewGroupDto> getGroupStar(@Param("limit") int limit);
+    List<ReviewGroupDto> getGroupStarV1(@Param("limit") int limit);
+
+
+    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(" +
+            "count(r),r.restaurant.id,r.restaurant.category, r.restaurant.cell_number, r.restaurant.load_address, r.restaurant.name)" +
+            " from Review r join r.restaurant res group by r.restaurant.id order by 1 desc ")
+    List<ReviewGroupDto> getGroupReviewV2(@Param("limit") int limit);
+
+
+    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(" +
+            "avg(r),r.restaurant.id,r.restaurant.category, r.restaurant.cell_number, r.restaurant.load_address, r.restaurant.name)" +
+            " from Review r join r.restaurant res group by r.restaurant.id order by 1 desc ")
+    List<ReviewGroupDto> getGroupStarV2(@Param("limit") int limit); //join fetch error남
+
+
+
+    //Test쿼리
+    @Query("select res" +
+            " from Restaurant res join fetch res.reviews rv ") //이너 조인이라 리뷰가 없는 가게는 안나옴. 리뷰없는 가게까지 가져오려면 left, right 조인 ㄱㄱ
+    List<Restaurant> getGroupStarTest(@Param("limit") int limit);
+    @Query("select r" +
+            " from Review r join fetch r.restaurant res ") //이너 조인이라 리뷰가 없는 가게는 안나옴. 리뷰없는 가게까지 가져오려면 left, right 조인 ㄱㄱ
+    List<Review> getGroupStarTest2(@Param("limit") int limit);
 
    /*
     @Query("select new com.gabia.project.internproject.repository.restauant.dto.ReviewGroupingDto( r, count, avg)" +

@@ -31,7 +31,7 @@ public interface RestaurantRepository  extends JpaRepository<Restaurant, Integer
             "from Review r left join r.restaurant res  group by r.restaurant.id order by 4 desc ")
     List<RestaurantJoinReviewDto> getTopStar();
 
-    @Query("select new com.gabia.project.internproject.repository.restauant.dto.RestaurantJoinReviewDto( res.id, res.name, res.category, count(r), avg(r.star) )" +
-            "from Review r left join r.restaurant res  group by r.restaurant.id")
-    List<RestaurantJoinReviewDto> getGroupReviewNStar();
+    @Query("select new com.gabia.project.internproject.repository.restauant.dto.RestaurantJoinReviewDto( count(r),res.id, res.name, res.category,  avg(r.star) )" +
+            "from Review r left join r.restaurant res  group by r.restaurant.id order by 1 desc")
+    List<RestaurantJoinReviewDto> getTopReviewNStar(@Param("limit") int limit);
 }

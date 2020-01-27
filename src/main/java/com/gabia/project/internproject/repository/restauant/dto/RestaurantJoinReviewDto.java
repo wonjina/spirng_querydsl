@@ -25,7 +25,7 @@ public class RestaurantJoinReviewDto {
         this.star = star;
     }
 
-    public RestaurantJoinReviewDto(int id, String name, String category, Long count, double star) {
+    public RestaurantJoinReviewDto(Long count, int id, String name, String category, double star) {
         this.id = id;
         this.name = name;
         this.category = category;

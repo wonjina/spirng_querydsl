@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -39,15 +40,12 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     private List<Review> reviews = new ArrayList<>();
 
-    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<RestaurantImg> restaurantImgs = new ArrayList<>();
 
-    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<Menu> menus = new ArrayList<>();
 
-    @JsonIgnore
     @OneToMany(mappedBy = "restaurant")
     private List<RecruitBoard> recruitBoards = new ArrayList<>();
 }

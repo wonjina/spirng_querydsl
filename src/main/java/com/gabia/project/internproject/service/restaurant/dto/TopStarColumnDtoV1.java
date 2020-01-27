@@ -1,11 +1,11 @@
-package com.gabia.project.internproject.service.restaruant.dto;
+package com.gabia.project.internproject.service.restaurant.dto;
 
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import lombok.Getter;
 
 @Getter
-public class TopStarColumnDto {
+public class TopStarColumnDtoV1 {
     private String name;
     private String phone;
     private String category;
@@ -16,14 +16,14 @@ public class TopStarColumnDto {
         this.star = star;
     }
 
-    public TopStarColumnDto(Restaurant restaurant) {
+    public TopStarColumnDtoV1(Restaurant restaurant) {
         this.name = restaurant.getName();
         this.phone = restaurant.getCell_number();
         this.category = restaurant.getCategory();
         this.address = restaurant.getLoad_address();
     }
 
-    public TopStarColumnDto(Restaurant restaurant, double star) {
+    public TopStarColumnDtoV1(Restaurant restaurant, double star) {
         this.name = restaurant.getName();
         this.phone = restaurant.getCell_number();
         this.category = restaurant.getCategory();

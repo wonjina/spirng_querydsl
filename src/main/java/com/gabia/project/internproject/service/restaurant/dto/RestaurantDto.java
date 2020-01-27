@@ -1,4 +1,4 @@
-package com.gabia.project.internproject.service.restaruant.dto;
+package com.gabia.project.internproject.service.restaurant.dto;
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import lombok.Getter;

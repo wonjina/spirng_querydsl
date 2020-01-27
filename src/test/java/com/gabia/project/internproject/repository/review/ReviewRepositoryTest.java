@@ -74,9 +74,31 @@ class ReviewRepositoryTest {
             System.out.println(reviewGroupingDto.getRestaurant_id()+
                     ","+reviewGroupingDto.getAvg()+","+reviewGroupingDto.getCount());
         }
-        List<ReviewGroupDto> test4 = reviewRepository.getGroupReview();
-        List<ReviewGroupDto> test5 = reviewRepository.getGroupStar(1);
+        List<ReviewGroupDto> test4 = reviewRepository.getGroupReviewV1(1);
+        List<ReviewGroupDto> test5 = reviewRepository.getGroupStarV1(1);
 
     }
 
+    @Test
+    void 쿼리어노테이션_패치조인사용하여_셀렉트문_설정테스트(){
+           List<ReviewGroupDto> list = reviewRepository.getGroupStarV2(5);
+
+        for (ReviewGroupDto r : list) {
+            System.out.println(r.getAvg()+","+r.getName()+","+r.getRestaurant_id());
+        }
+        List<ReviewGroupDto> list2 = reviewRepository.getGroupReviewV2(5);
+
+        for (ReviewGroupDto r : list2) {
+            System.out.println(r.getCount()+","+r.getName()+","+r.getCategory()+","+r.getRestaurant_id());
+        }
+
+    }
+
+    @Test
+    void 쿼리어노테이션테스트(){
+        List<Review> list = reviewRepository.getGroupStarTest2(3);
+        for (Review r : list) {
+            System.out.println(r.getComment()+","+r.getRestaurant().getName()+","+r.getRestaurant().getCategory());
+        }
+    }
 }

@@ -28,7 +28,6 @@ public class RecruitBoard {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "recruitBoard")
     private List<RecruitMember> recruitMembers = new ArrayList<>();
 
