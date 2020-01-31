@@ -5,6 +5,7 @@ import com.gabia.project.internproject.common.domain.Restaurant;
 import com.gabia.project.internproject.common.domain.Review;
 import com.gabia.project.internproject.repository.restauant.dto.RestaurantJoinReviewDto;
 import com.gabia.project.internproject.repository.review.dto.ReviewGroupDto;
+import com.querydsl.core.Tuple;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,16 @@ class RestaurantRepositoryTest {
     @Autowired
     RestaurantRepository restaurantRepository;
 
+    @Test
+    void 쿼리dsl테스트(){
+        List<RestaurantJoinReviewDto> list = restaurantRepository.getRestaurantList("","",0,"desc","count");
+        for (RestaurantJoinReviewDto r : list) {
+            //restaurant.id.count(),restaurant.id, restaurant.name, restaurant.category,review.star.avg()
+           /* System.out.println(tuple.get(0, Integer.class )+","+ tuple.get(1, Integer.class)
+            +","+tuple.get(2,String.class) +","+tuple.get(4,Double.class));*/
+            System.out.println(r.getCategory()+","+r.getName()+","+r.getCount()+","+r.getStar()+","+r.getId());
+        }
+    }
     @Test
     public void 가게별_리뷰갯수_별점평균(){
         /*

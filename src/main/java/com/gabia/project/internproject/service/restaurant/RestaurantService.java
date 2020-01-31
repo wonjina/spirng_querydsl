@@ -29,9 +29,10 @@ public class RestaurantService {
         return new CategoriesDto(restaurantRepository.getCategories());
     }
     public List<RestaurantDto> getRestaurantsList(String name, String category){
-        return restaurantRepository.getRestaurantList(name, category).stream()
+        return null;
+        /*return restaurantRepository.getRestaurantList(name, category).stream()
                 .map(r->new RestaurantDto(r))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
     }
     public RestaurantDetailDto getRestaurantInfo(int id){
         //리뷰 정보
@@ -120,9 +121,9 @@ public class RestaurantService {
     public RestaurantTopStarDtoV2 getTopStarListV2(int limit){
         return new RestaurantTopStarDtoV2(reviewRepository.getGroupStarV2(limit));
     }
-
+/*
     public RestaurantTopReviewDtoV2 getTopAmoutReviewListV2(int limit){
         return new RestaurantTopReviewDtoV2(reviewRepository.getGroupReviewV2(limit));
-    }
+    }*/
 
 }

@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 class RestaurantServiceTest {
     @Autowired
     RestaurantService restaurantService;
-
+/*
     @Test
     public void 별점높은가게리스트테스트(){
         RestaurantTopStarDtoV1 re = restaurantService.getTopStarList(3);
@@ -23,6 +23,6 @@ class RestaurantServiceTest {
         }
 
 
-    }
+    }*/
 
 }

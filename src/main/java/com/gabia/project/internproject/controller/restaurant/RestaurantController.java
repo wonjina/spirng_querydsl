@@ -33,9 +33,11 @@ public class RestaurantController {
 
     @GetMapping("/restaurant/v2/filter/topstarlist")
     public RestaurantTopStarDtoV2 getSortingStarListV2(){  return restaurantService.getTopStarListV2(LIMIT);  }
+/*
 
     @GetMapping("/restaurant/v2/filter/topreviewlist")
     public RestaurantTopReviewDtoV2 getSortingReviewListV2(){ return restaurantService.getTopAmoutReviewListV2(LIMIT); }
+*/
 
     @GetMapping("/restaurant/v1/filter/topstarlist")
     public RestaurantTopStarDtoV1 getSortingStarListV1(){

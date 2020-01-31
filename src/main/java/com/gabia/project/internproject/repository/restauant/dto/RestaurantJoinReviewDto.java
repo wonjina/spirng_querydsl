@@ -1,8 +1,10 @@
 package com.gabia.project.internproject.repository.restauant.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class RestaurantJoinReviewDto {
 
     private int id;
