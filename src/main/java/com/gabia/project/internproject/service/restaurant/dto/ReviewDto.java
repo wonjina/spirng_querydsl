@@ -4,10 +4,11 @@ import com.gabia.project.internproject.common.domain.Review;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 public class ReviewDto {
-    private LocalDate date;
+    private LocalDateTime date;
     private String comment;
     private int star;
     private String member_name;

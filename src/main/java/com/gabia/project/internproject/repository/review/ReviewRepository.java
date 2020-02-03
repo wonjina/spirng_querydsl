@@ -2,6 +2,7 @@ package com.gabia.project.internproject.repository.review;
 
 import com.gabia.project.internproject.common.domain.Restaurant;
 import com.gabia.project.internproject.common.domain.Review;
+import com.gabia.project.internproject.repository.review.customRepository.ReviewRepositoryCustom;
 import com.gabia.project.internproject.repository.review.dto.ReviewGroupDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
+public interface ReviewRepository extends JpaRepository<Review, Integer> , ReviewRepositoryCustom {
 
     @Query("select rev from Review rev join fetch rev.member m where rev.restaurant.id= :restaruant")
     List<Review> getReviewsAtRestaurant(@Param("restaruant") int id /*Restaurant restaruant*/);

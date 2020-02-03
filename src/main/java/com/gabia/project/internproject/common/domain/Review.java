@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Review {
     @Column(name = "review_id")
     private int id;
 
-    private LocalDate date;
+    private LocalDateTime date;
     private String comment;
     private int star;
 

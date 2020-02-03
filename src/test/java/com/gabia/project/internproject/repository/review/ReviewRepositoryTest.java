@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -16,6 +17,17 @@ class ReviewRepositoryTest {
 
     @Autowired
     ReviewRepository reviewRepository;
+
+
+    @Test
+    void 데이트쿼리테스트(){
+
+        List<Review> list = reviewRepository.getReviews(LocalDateTime.now());
+        for (Review review : list) {
+            System.out.println(review.getId()+","+review.getComment());
+        }
+    }
+
 
     @Test
     public void 특정가게리뷰리스트가져오기(){
