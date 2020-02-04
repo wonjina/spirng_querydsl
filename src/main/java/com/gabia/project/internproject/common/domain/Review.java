@@ -21,7 +21,7 @@ public class Review {
 
     private LocalDateTime date;
     private String comment;
-    private int star;
+    private int rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")

@@ -16,7 +16,7 @@ public class ReviewDto {
     public ReviewDto(Review review) {
         this.date = review.getDate();
         this.comment = review.getComment();
-        this.star = review.getStar();
+        this.star = review.getRating();
         this.member_name = review.getMember().getName();
     }
 }

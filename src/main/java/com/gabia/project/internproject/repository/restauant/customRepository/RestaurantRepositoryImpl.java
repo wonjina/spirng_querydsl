@@ -30,12 +30,12 @@ public class RestaurantRepositoryImpl implements RestaurantRepositoryCustom {
         JPAQueryFactory query = new JPAQueryFactory(em);
 
         JPAQuery query1 = query.select(Projections.fields(RestaurantJoinReviewDto.class,
-                restaurant.id.count().as("count"),restaurant.id, restaurant.name, restaurant.category,review.star.avg().as("star")))
+                restaurant.id.count().as("count"),restaurant.id, restaurant.name, restaurant.category,review.rating.avg().as("star")))
                 .from(review)
                 .join(review.restaurant, restaurant)
                 .where(statusNameEq(name), statusCategoryEq(category))
                 .groupBy(restaurant.id)
-                .orderBy(review.star.avg().desc());
+                .orderBy(review.rating.avg().desc());
         if(limit>0) query1.limit(limit);
         return query1.fetch();
 

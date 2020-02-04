@@ -15,7 +15,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> , Revie
     @Query("select rev from Review rev join fetch rev.member m where rev.restaurant.id= :restaruant")
     List<Review> getReviewsAtRestaurant(@Param("restaruant") int id /*Restaurant restaruant*/);
 
-    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r), avg(r.star))" +
+    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, count(r), avg(r.rating))" +
             " from Review r group by r.restaurant.id")
     List<ReviewGroupDto> getGroupReviewNStar();
 
@@ -23,7 +23,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> , Revie
             " from Review r group by r.restaurant.id order by 1 ")
     List<ReviewGroupDto> getGroupReviewV1(@Param("limit") int limit);
 
-    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, avg(r.star))" +
+    @Query("select new com.gabia.project.internproject.repository.review.dto.ReviewGroupDto(r.restaurant.id, avg(r.rating))" +
             " from Review r group by r.restaurant.id order by 1 ")
     List<ReviewGroupDto> getGroupStarV1(@Param("limit") int limit);
 

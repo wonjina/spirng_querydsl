@@ -1,3 +1,4 @@
+/*
 buildscript {
 	repositories {
 		maven {
@@ -8,15 +9,18 @@ buildscript {
 			classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10"
 	}
 }
+*/
 
 
 plugins {
 	id 'org.springframework.boot' version '2.2.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	id 'idea'
 }
 
-apply plugin: "com.ewerk.gradle.plugins.querydsl"
+//apply plugin: "com.ewerk.gradle.plugins.querydsl"
 
 
 group = 'com.gabia.project'
@@ -55,6 +59,33 @@ test {
 	useJUnitPlatform()
 }
 
+
+def querydslSrcDir = 'src/main/generated'
+
+querydsl {
+	library = "com.querydsl:querydsl-apt"
+	jpa = true
+	querydslSourcesDir = querydslSrcDir
+}
+
+compileQuerydsl{
+	options.annotationProcessorPath = configurations.querydsl
+}
+
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', querydslSrcDir]
+		}
+	}
+}
+
+/*
+
 //querydsl 추가
 def querydslDir = 'src/main/generated'
 querydsl {
@@ -74,4 +105,4 @@ compileQuerydsl{
 }
 configurations {
 	querydsl.extendsFrom compileClasspath
-}
+}*/
